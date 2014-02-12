@@ -19,7 +19,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine. In the example below,
   # accessing "localhost:8080" will access port 80 on the guest machine.
-  # config.vm.network :forwarded_port, guest: 80, host: 80
+   config.vm.network :forwarded_port, guest: 80, host: 8888
 
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
@@ -115,4 +115,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # chef-validator, unless you changed the configuration.
   #
   #   chef.validation_client_name = "ORGNAME-validator"
+
+config.vm.provision :shell, inline:"apt-get update; apt-get install -y apache2 php5; cp /vagrant/sources.list  /etc/apt/"
+
 end
